@@ -1,12 +1,13 @@
 package Demo;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import junit.framework.Assert;
+
 
 public class AddCustomer {
 
@@ -25,7 +26,7 @@ public class AddCustomer {
 		driver.manage().window().maximize();
 	}
 
-	@When("user provide valid details")
+	/*@When("user provide valid details")
 	    public void user_provide_valid_details() {
 		
 	driver.findElement(By.xpath("//label[text()='Done']")).click();
@@ -36,13 +37,26 @@ public class AddCustomer {
 	driver.findElement(By.id("telephoneno")).sendKeys("9344278231");
 	driver.findElement(By.xpath("//input[@name='submit']")).click();
 	}
+	*/
+	@When("user provide valid details {string},{string},{string},{string}, {string}")
+	public void user_provide_valid_details(String fname, String lname, String email, String address, String phoneno) {
+		driver.findElement(By.xpath("//label[text()='Done']")).click();
+		driver.findElement(By.id("fname")).sendKeys(fname);
+		driver.findElement(By.id("lname")).sendKeys(lname);
+		driver.findElement(By.id("email")).sendKeys(email);
+		driver.findElement(By.xpath("//textarea[@name='addr']")).sendKeys(address);
+		driver.findElement(By.id("telephoneno")).sendKeys(phoneno);
+		driver.findElement(By.xpath("//input[@name='submit']")).click();
+		
+	}
+	
 
 	@Then("to verify the customer id is displayed")
 
 	
 	   public void to_verify_the_customer_id_is_possible(){
 		
-	Assert.assertTrue((driver.findElement(By.xpath("//td[@align='center']")).isDisplayed()));
+		Assert.assertTrue((driver.findElement(By.xpath("//td[@align='center']")).isDisplayed()));
 	   
 	}
 
