@@ -1,5 +1,7 @@
 package Demo;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -38,19 +40,20 @@ public class AddCustomer {
 	driver.findElement(By.xpath("//input[@name='submit']")).click();
 	}
 	*/
-	@When("user provide valid details {string},{string},{string},{string}, {string}")
-	public void user_provide_valid_details(String fname, String lname, String email, String address, String phoneno) {
+	@When("user provide valid details")
+	public void user_provide_valid_details(io.cucumber.datatable.DataTable data) {
+		List<String> oned = data.asList(String.class);
+		
 		driver.findElement(By.xpath("//label[text()='Done']")).click();
-		driver.findElement(By.id("fname")).sendKeys(fname);
-		driver.findElement(By.id("lname")).sendKeys(lname);
-		driver.findElement(By.id("email")).sendKeys(email);
-		driver.findElement(By.xpath("//textarea[@name='addr']")).sendKeys(address);
-		driver.findElement(By.id("telephoneno")).sendKeys(phoneno);
+		driver.findElement(By.id("fname")).sendKeys(oned.get(0));
+		driver.findElement(By.id("lname")).sendKeys(oned.get(1));
+		driver.findElement(By.id("email")).sendKeys(oned.get(2));
+		driver.findElement(By.xpath("//textarea[@name='addr']")).sendKeys(oned.get(3));
+		driver.findElement(By.id("telephoneno")).sendKeys(oned.get(4));
 		driver.findElement(By.xpath("//input[@name='submit']")).click();
 		
 	}
 	
-
 	@Then("to verify the customer id is displayed")
 
 	
