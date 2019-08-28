@@ -1,9 +1,9 @@
 @tag
-Feature: Create multiple customer ids
+Feature: Create Customer id with one dimensional list
   I want to use this template for my feature file
 
 @tag1
-  Scenario: Generate the customer ID
+  Scenario: Generate the  customer ID
     Given User should launch browser
     And User click add customer link
     When user provide valid details
