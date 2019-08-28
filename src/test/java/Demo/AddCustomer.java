@@ -12,7 +12,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 
-public class AddCustomer {
+public class AddCustomer{
 
 	static WebDriver driver;
 	@Given("User should launch browser")
