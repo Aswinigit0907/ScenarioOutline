@@ -38,8 +38,7 @@ public class AddCustomer {
 	driver.findElement(By.xpath("//textarea[@name='addr']")).sendKeys("Chennai");
 	driver.findElement(By.id("telephoneno")).sendKeys("9344278231");
 	driver.findElement(By.xpath("//input[@name='submit']")).click();
-	}
-	*/
+
 	@When("user provide valid details")
 	public void user_provide_valid_details(io.cucumber.datatable.DataTable data) {
 		List<String> oned = data.asList(String.class);
@@ -53,7 +52,17 @@ public class AddCustomer {
 		driver.findElement(By.xpath("//input[@name='submit']")).click();
 		
 	}
-	
+	*/
+	@When("user provide valid details {string},{string},{string},{string}, {string}")
+	public void user_provide_valid_details(String fname, String lname, String email, String address, String phoneno) {
+		driver.findElement(By.xpath("//label[text()='Done']")).click();
+		driver.findElement(By.id("fname")).sendKeys(fname);
+		driver.findElement(By.id("lname")).sendKeys(lname);
+		driver.findElement(By.id("email")).sendKeys(email);
+		driver.findElement(By.xpath("//textarea[@name='addr']")).sendKeys(address);
+		driver.findElement(By.id("telephoneno")).sendKeys(phoneno);
+		driver.findElement(By.xpath("//input[@name='submit']")).click();
+	}
 	@Then("to verify the customer id is displayed")
 
 	
