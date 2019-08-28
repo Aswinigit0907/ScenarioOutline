@@ -1,6 +1,7 @@
 package Demo;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -50,7 +51,7 @@ public class AddCustomer {
 		driver.findElement(By.id("telephoneno")).sendKeys(phoneno);
 		driver.findElement(By.xpath("//input[@name='submit']")).click();
 	}
-	*/
+
 	@When("user provide valid details")
 	public void user_provide_valid_details(io.cucumber.datatable.DataTable data) {
 		List<String> oned = data.asList(String.class);
@@ -64,7 +65,29 @@ public class AddCustomer {
 		driver.findElement(By.xpath("//input[@name='submit']")).click();
 		
 	}
+		*/
+	
+	
+	@When ("user provide valid details")
+	public void user_provide_valid_details(io.cucumber.datatable.DataTable cust) {
+     Map<String,String> onedmap = cust.asMap(String.class, String.class);
+     System.out.println(onedmap);
+		
+		driver.findElement(By.xpath("//label[text()='Done']")).click();
+		driver.findElement(By.id("fname")).sendKeys(onedmap.get("fname"));
+		driver.findElement(By.id("lname")).sendKeys(onedmap.get("lname"));
+		driver.findElement(By.id("email")).sendKeys(onedmap.get("email"));
+		driver.findElement(By.xpath("//textarea[@name='addr']")).sendKeys(onedmap.get("address"));
+		driver.findElement(By.id("telephoneno")).sendKeys(onedmap.get("phoneno"));
+		driver.findElement(By.xpath("//input[@name='submit']")).click();
+		
+	}
+	
+	
+	
 	@Then("to verify the customer id is displayed")
+	
+	
 
 	
 	   public void to_verify_the_customer_id_is_possible(){
