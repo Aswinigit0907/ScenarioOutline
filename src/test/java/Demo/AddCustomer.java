@@ -25,7 +25,7 @@ public class AddCustomer {
 	public void user_click_add_customer_link(){
 		
 		driver.findElement(By.xpath("(//a[text()='Add Customer'])[1]")).click();  
-		driver.manage().window().maximize();
+	
 	}
 
 	/*@When("user provide valid details")
